@@ -5,7 +5,7 @@
 	<description>Remove the keyword from the incoming SMS</description>
 	<release>0.1</release>
 	<date>2015-04-02</date>
-	<author>knightsamar</author>
+	<author>Samarendra M Hedaoo</author>
 	<language_file>1</language_file>
 	<sql_file>0</sql_file>
 	<php_file>1</php_file>
