@@ -3,13 +3,24 @@ Author	: Samarendra M Hedaoo
 Release	: 0.1
 License	: Apache License 2.0
 
+ABOUT
+-----
+This playSMS plugin removes the keyword from incoming SMS.
+
+
 INSPIRATION:
+------------
 
 Anton Raheja's reply in the email thread.
 https://groups.google.com/d/msg/playsmsusergroup/g-1UILDV-78/KvIaUBFJTNYJ
 
-TODO: 
 
+USAGE
+-----
+Clone this project directory under web/plugin/feature directory.
+
+TODO: 
+-----
 1. Make the behaviour customize per-user and per-keyword ie. the admin 
 must be able to configure which keywords from which SMSes (based on the 
 recipient) are removable or not.
