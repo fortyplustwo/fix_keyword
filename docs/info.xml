@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin>
-	<name>remove_keyword</name>
-	<alias>remove_keyword</alias>
+	<name>fix_keyword</name>
+	<alias>fix_keyword</alias>
 	<description>Remove the keyword from the incoming SMS</description>
 	<release>0.1</release>
 	<date>2015-04-02</date>
