@@ -15,22 +15,29 @@ defined('_SECURE_') or die('Forbidden');
  * @return
  *   array $ret
  */
-function remove_keyword_hook_recvsms_intercept($sms_datetime, $sms_sender, $message, $sms_receiver) {
-    $ret = array();
-    //We assume that the first word in the SMS is the keyword and remove it.
-    $new_message = explode(" ",$message, 2);
+function fix_keyword_hook_recvsms_intercept($sms_datetime, $sms_sender, $message, $sms_receiver) {
+        $ret = array();
 
-    $ret['param']['message'] = $new_message[1]; 
-    logger_print("*******", 3, "remove_keyword");
-    logger_print("sms_sender ".$sms_sender, 3, "remove_keyword");
-    logger_print("message ".$message, 3, "remove_keyword");
-    logger_print("new message ".$new_message[1], 3, "remove_keyword");
-    logger_print("sms_receiver ".$sms_receiver, 3, "remove_keyword");
-    logger_print("*******", 3, "remove_keyword");
+        //We assume that the first word in the SMS is the keyword and remove it.
+        $new_message = explode(" ", $message, 2);
+        $username = str_replace('@', '', $new_message[0]);
+        $nm = $new_message[1];
 
-    $ret['param']['message'] = $new_message[1];
-    $ret['modified'] = TRUE;
-    $ret['hooked'] = TRUE;
+        logger_print("*******", 3, "fix_keyword");
+        logger_print("sms_sender " . $sms_sender, 3, "fix_keyword");
+        logger_print("message " . $message, 3, "fix_keyword");
+        logger_print("new message " . $nm, 3, "fix_keyword");
+        logger_print("sms target user" . $sms_receiver, 3, "fix_keyword");
+        logger_print("*******", 3, "fix_keyword");
 
-    return $ret;
+        if (($uid = user_username2uid($username)) && $nm) {
+                _log("save in inbox u:" . $username . " uid:" . $uid . " dt:" . $sms_datetime . " s:" . $sms_sender . " r:" . $sms_receiver . " m:[" . $nm . "]", 3, 'fix_keyword');
+                recvsms_inbox_add($sms_datetime, $sms_sender, $username, $nm, $sms_receiver);
+        }
+
+        $ret['param']['message'] = $nm;
+        $ret['modified'] = TRUE;
+        $ret['hooked'] = TRUE;
+
+        return $ret;
 }
