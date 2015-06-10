@@ -18,6 +18,7 @@ https://groups.google.com/d/msg/playsmsusergroup/g-1UILDV-78/KvIaUBFJTNYJ
 USAGE
 -----
 Clone this project directory under web/plugin/feature directory.
+Restart the playsmsd daemon by `playsmsd restart`
 
 TODO: 
 -----
